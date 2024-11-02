@@ -1,0 +1,11 @@
+2024/10/31 10:13:32 WebSocket server starting on port 8080...
+2024/10/31 10:16:05 WebSocket server starting on port 8080...
+2024/10/31 10:16:19 user connected: [::1]:13682
+2024/10/31 10:16:59 Client [::1]:13682 didn't respond to heartbeat, disconnecting
+2024/10/31 10:16:59 user disconected: [::1]:13682
+2024/10/31 10:34:36 WebSocket server starting on port 8080...
+2024/10/31 10:34:51 user connected: [::1]:13778
+2024/10/31 10:35:07 user disconected: [::1]:13778
+2024/10/31 10:36:35 user connected: [::1]:13786
+2024/10/31 10:39:15 Client [::1]:13786 didn't respond to heartbeat, disconnecting
+2024/10/31 10:39:15 user disconected: [::1]:13786
