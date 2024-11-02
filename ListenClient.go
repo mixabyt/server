@@ -34,6 +34,7 @@ func ListenClient(clientID int, done chan<- bool, wg *sync.WaitGroup) {
 			client.LastActivity = time.Now().Add(10 * time.Second)
 		case "subMainMenu":
 			onSubMainMenu(client, message)
+			OncounterNotify()
 		case "findInterlocutor":
 			onFindInterlocutor(client)
 		case "stopFindingInterlocutor":

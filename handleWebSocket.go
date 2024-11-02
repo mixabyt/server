@@ -19,7 +19,7 @@ func HandleWebSocket(w http.ResponseWriter, r *http.Request) {
 
 	clients.AddNewUser(clientID, conn)
 	log.Printf("user connected: %s [%d]", conn.RemoteAddr(), clientID)
-	OncounterNotify(countClients)
+	OncounterNotify()
 
 	var wg sync.WaitGroup
 	wg.Add(1)

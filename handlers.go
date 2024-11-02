@@ -15,15 +15,15 @@ func OnDisconect(client *Client, done chan<- bool) {
 		}
 	}
 	clients.DeleteUser(client.ID)
-	OncounterNotify(countClients)
+	OncounterNotify()
 	done <- true
 }
 
-func OncounterNotify(count int) {
+func OncounterNotify() {
 	mu.Lock()
 	for _, conn := range subMainMenu {
 
-		sMM := &UpdateCountUser{Type: "subMainMenu", Count: count}
+		sMM := &UpdateCountUser{Type: "subMainMenu", Count: countClients}
 		data, _ := json.Marshal(sMM)
 		conn.Conn.WriteMessage(websocket.TextMessage, data)
 	}
