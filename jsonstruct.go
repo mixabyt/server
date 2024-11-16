@@ -25,6 +25,10 @@ type TextMessage struct {
 	Type string `json:"type"`
 	Text string `json:"text"`
 }
+type PhotoMessage struct {
+	Type  string `json:"type"`
+	Photo []byte `json:"photo"`
+}
 
 type DeleteNotice struct {
 	Type string `json:"type"`

@@ -41,11 +41,15 @@ func ListenClient(clientID int, done chan<- bool, wg *sync.WaitGroup) {
 			rID, _ := rooms.Rooms[client.RoomID].KickFromRoom(client)
 			rooms.DeleteRoom(rID)
 			queueUsers.DeleteFromQueue()
-		case "message":
+		case "textmessage":
 			data := &TextMessage{}
 			json.Unmarshal(message, data)
 			rooms.Rooms[client.RoomID].SendMessage(client, data)
-
+		case "photomessage":
+			data := &PhotoMessage{}
+			json.Unmarshal(message, data)
+			log.Println(data.Photo[:10])
+			rooms.Rooms[client.RoomID].SendMessage(client, data)
 		case "leaveDialog":
 			rID, roomlenght := rooms.Rooms[client.RoomID].KickFromRoom(client)
 			if roomlenght == 0 {
