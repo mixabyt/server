@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/gorilla/websocket"
 )
@@ -15,6 +16,7 @@ func OnDisconect(client *Client, done chan<- bool) {
 		}
 	}
 	clients.DeleteUser(client.ID)
+	queueUsers.DeleteFromQueue()
 	OncounterNotify()
 	done <- true
 }
@@ -47,9 +49,10 @@ func onSubMainMenu(client *Client, message []byte) {
 func onFindInterlocutor(client *Client) {
 	interlocutor, inqueue := queueUsers.AddtoQueue(client)
 	if !inqueue {
+		log.Printf("rooms.CreateRoom(client)")
 		rooms.CreateRoom(client)
 	} else {
-
+		log.Printf("перед queueUsers.DeleteFromQueue()")
 		queueUsers.DeleteFromQueue()
 		rooms.AddToRoom(interlocutor.RoomID, client)
 		data, _ := json.Marshal(&FindInterlocutor{Type: "findInterlocutor"})

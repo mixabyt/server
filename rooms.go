@@ -33,7 +33,11 @@ func (r *Rooms) AddToRoom(roomID int, client *Client) {
 	defer mu.Unlock()
 
 	client.RoomID = roomID
-	room := r.Rooms[roomID]
+	room, ok := r.Rooms[roomID]
+	if !ok {
+
+		log.Printf("roomid: %d not ok; clientroomid: %d, clientid: %d", roomID, client.RoomID, client.ID)
+	}
 
 	room.Clients[client.ID] = client
 	log.Printf("id[%d] add to room[%d]\n", client.ID, roomID)
